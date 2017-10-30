@@ -1,4 +1,4 @@
-package br.com.erudio.helloretroitcrud;
+package br.com.erudio.helloretrofitcrud;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("br.com.erudio.helloretroitcrud", appContext.getPackageName());
+        assertEquals("br.com.erudio.helloretrofitcrud", appContext.getPackageName());
     }
 }

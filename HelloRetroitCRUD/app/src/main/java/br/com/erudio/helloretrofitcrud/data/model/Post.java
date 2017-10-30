@@ -1,4 +1,4 @@
-package br.com.erudio.helloretroitcrud.data.model;
+package br.com.erudio.helloretrofitcrud.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

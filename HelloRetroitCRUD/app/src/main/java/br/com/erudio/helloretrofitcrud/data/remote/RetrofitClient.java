@@ -1,4 +1,4 @@
-package br.com.erudio.helloretroitcrud.data.remote;
+package br.com.erudio.helloretrofitcrud.data.remote;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

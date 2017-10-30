@@ -1,4 +1,4 @@
-package br.com.erudio.helloretroitcrud.data.remote;
+package br.com.erudio.helloretrofitcrud.data.remote;
 
 public class ApiUtils {
 

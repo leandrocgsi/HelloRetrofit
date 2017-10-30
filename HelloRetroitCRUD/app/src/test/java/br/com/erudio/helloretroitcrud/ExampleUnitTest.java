@@ -1,4 +1,4 @@
-package br.com.erudio.helloretroitcrud;
+package br.com.erudio.helloretrofitcrud;
 
 import org.junit.Test;
 
