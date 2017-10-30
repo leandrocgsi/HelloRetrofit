@@ -75,4 +75,8 @@ public class MainActivity extends AppCompatActivity {
     public void showErrorMessage() {
         Toast.makeText(this, "Error loading posts", Toast.LENGTH_SHORT).show();
     }
+
+    /*
+    SEE: https://code.tutsplus.com/tutorials/getting-started-with-retrofit-2--cms-27792 and https://github.com/tutsplus/get-started-with-retrofit-2-http-client
+    */
 }

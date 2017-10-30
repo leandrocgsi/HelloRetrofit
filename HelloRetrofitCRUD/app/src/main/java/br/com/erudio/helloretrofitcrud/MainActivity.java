@@ -146,4 +146,8 @@ public class MainActivity extends AppCompatActivity {
         }
         textViewResponse.setText(response);
     }
+
+    /*
+    SEE: https://code.tutsplus.com/tutorials/sending-data-with-retrofit-2-http-client-for-android--cms-27845 and https://github.com/chikecodes/tutsplus-retrofit2-part2
+    */
 }
