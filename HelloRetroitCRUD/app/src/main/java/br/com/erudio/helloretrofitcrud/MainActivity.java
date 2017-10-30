@@ -17,15 +17,16 @@ import br.com.erudio.helloretrofitcrud.data.remote.ApiUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+// import rx.Subscriber;
+// import rx.android.schedulers.AndroidSchedulers;
+// import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private TextView mResponseTv;
-    private APIService mAPIService;
+    private TextView textViewResponse;
+
+    private APIService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         final EditText titleEt = (EditText) findViewById(R.id.et_title);
         final EditText bodyEt = (EditText) findViewById(R.id.et_body);
         Button submitBtn = (Button) findViewById(R.id.btn_submit);
-        mResponseTv = (TextView) findViewById(R.id.tv_response);
+        textViewResponse = (TextView) findViewById(R.id.tv_response);
 
-        mAPIService = ApiUtils.getAPIService();
+        service = ApiUtils.getAPIService();
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +52,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void sendPostOld(String title, String body) {
-        mAPIService.savePostOld(title, body, 1).enqueue(new Callback<Post>() {
+    public void showErrorMessage() {
+        Toast.makeText(this, R.string.mssg_error_submitting_post, Toast.LENGTH_SHORT).show();
+    }
+
+    public void sendPost(String title, String body) {
+
+        // RxJava
+        /*service.savePost(title, body, 1).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Post>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+                    @Override
+                    public void onNext(Post post) {
+                        showResponse(post.toString());
+                    }
+                });
+*/
+        service.savePost(title, body, 1).enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
 
@@ -60,42 +81,69 @@ public class MainActivity extends AppCompatActivity {
                     showResponse(response.body().toString());
                     Log.i(TAG, "post submitted to API." + response.body().toString());
                 }
+
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
+
                 showErrorMessage();
                 Log.e(TAG, "Unable to submit post to API.");
             }
         });
     }
 
-    public void sendPost(String title, String body) {
+    public void updatePost(long id, String title, String body) {
+        service.updatePost(id, title, body, 1).enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
 
-        // RxJava
-        mAPIService.savePost(title, body, 1).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Post>() {
-                    @Override
-                    public void onCompleted() {
-                    }
+                if(response.isSuccessful()) {
+                    showResponse(response.body().toString());
+                    Log.i(TAG, "post updated." + response.body().toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
 
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onNext(Post post) {
-                        showResponse(post.toString());
-                    }
-                });
+                showErrorMessage();
+                Log.e(TAG, "Unable to update post.");
+            }
+        });
     }
+
+   /*
+   Example of cancelling a request
+   private Call<Post> mCall;
+    public sendPost(String title, String body) {
+        mCall = service.savePost(title, body, 1);
+        mCall.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if(response.isSuccessful()) {
+                    showResponse(response.body().toString());
+                    Log.i(TAG, "post submitted to API." + response.body().toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                if(call.isCanceled()) {
+                    Log.e(TAG, "request was aborted");
+                }else {
+                    Log.e(TAG, "Unable to submit post to API.");
+                }
+                showErrorMessage();
+            }
+        });
+    }
+    public void cancelRequest() {
+        mCall.cancel();
+    }*/
 
     public void showResponse(String response) {
-        if(mResponseTv.getVisibility() == View.GONE)  mResponseTv.setVisibility(View.VISIBLE);
-        mResponseTv.setText(response);
-    }
-
-    public void showErrorMessage() {
-        Toast.makeText(this, R.string.mssg_error_submitting_post, Toast.LENGTH_SHORT).show();
+        if(textViewResponse.getVisibility() == View.GONE) {
+            textViewResponse.setVisibility(View.VISIBLE);
+        }
+        textViewResponse.setText(response);
     }
 }

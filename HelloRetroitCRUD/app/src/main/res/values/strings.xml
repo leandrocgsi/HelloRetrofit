@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HelloRetroitCRUD</string>
+    <string name="app_name">Hello Retrofit CRUD</string>
     <string name="hint_title">Title</string>
     <string name="hint_body">Body</string>
     <string name="action_submit">Submit</string>
