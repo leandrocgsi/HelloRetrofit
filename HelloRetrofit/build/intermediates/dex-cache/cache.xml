@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Dev\Playground\Code\HelloRetrofit\HelloRetrofit\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="1145d6594d372724b678aeb8a749900fb08ea7e9">
+        <dex dex="C:\Dev\Playground\Code\HelloRetrofit\HelloRetrofit\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_c42c2927989f5b4cf33cc751a18e6891c22d43d8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Dev\Playground\Code\HelloRetrofit\HelloRetrofit\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Dev\Playground\Code\HelloRetrofit\HelloRetrofit\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ac7c072104f39fa17a04c26b463dee047f18a57b\classes.dex" />
+    </item>
+
+</items>
